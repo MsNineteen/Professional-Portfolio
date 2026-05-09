@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Rearabetswe Sons | Cybersecurity Portfolio</title>
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #C46EA1 0%, #9C2968 30%, #5B1343 55%, #133C5A 85%);
+      min-height: 100vh;
+      color: #f0f0f0;
+      scroll-behavior: smooth;
+    }
+
+    /* main container */
+    .app-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 4rem;
+    }
+
+    /* --- header / hero --- */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #5B1343;
+      color: white;
+      font-weight: 700;
+    }
+    .hero h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 0.75rem 0 1rem;
+      color: #FFE7F0;
+      opacity: 0.95;
+    }
+    .neon-line {
+      width: 80px;
+      height: 4px;
+      background: #9C2968;
+      margin: 1rem auto 1rem auto;
+      border-radius: 4px;
+      box-shadow: 0 0 12px #C46EA1, 0 0 6px #ff96c0;
+      transition: width 0.3s;
+    }
+    .contact-links-row {
+      display: flex;
+      justify-content: center;
+      gap: 2.2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+    .contact-links-row a {
+      color: #FFD9EC;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      border-bottom: 1px dotted transparent;
+    }
+    .contact-links-row a i {
+      margin-right: 6px;
+      color: #FFB3D1;
+    }
+    .contact-links-row a:hover {
+      color: white;
+      text-shadow: 0 0 3px #C46EA1;
+      border-bottom-color: #C46EA1;
+    }
+
+    /* navigation curved squares (floating buttons) */
+    .nav-squares {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 3rem 0 3rem;
+    }
+    .curved-square {
+      background: rgba(0, 5, 13, 0.65);
+      backdrop-filter: blur(4px);
+      border: 1.8px solid #9C2968;
+      border-radius: 32px;
+      padding: 1rem 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #f0f0f0;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 6px rgba(156,41,104,0.5);
+      background: #0a0f1cee;
+    }
+    .curved-square i {
+      font-size: 1.5rem;
+      color: #C46EA1;
+    }
+    .curved-square:hover {
+      transform: translateY(-5px);
+      border-color: #C46EA1;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.5), 0 0 12px #ff7eb3;
+      background: #18203ccc;
+    }
+
+    /* page content sections (each "page" is a section) */
+    .page-section {
+      display: none;
+      animation: fadeSlide 0.35s ease;
+      margin-top: 1.2rem;
+    }
+    .active-page {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(12px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* floating heading style (neon background shade) */
+    .floating-heading {
+      display: inline-block;
+      background: linear-gradient(120deg, #133C5A, #22587F);
+      padding: 0.35rem 2rem;
+      border-radius: 60px;
+      font-size: 2rem;
+      font-weight: bold;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.3), 0 0 8px #9C2968;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      border: 1px solid rgba(196,110,161,0.5);
+      align-items: center;
+      text-align: center;
+    }
+    .skill-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.8rem;
+    }
+    .skill-card {
+      flex: 1;
+      min-width: 260px;
+      background: rgba(0,5,13,0.55);
+      backdrop-filter: blur(4px);
+      border-radius: 36px;
+      padding: 1.5rem 1.5rem;
+      border: 1px solid #5B1343;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    .skill-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      background: #18203C;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+    }
+    .skill-bar-item {
+      margin: 1rem 0;
+    }
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .bar-bg {
+      background: #2a2f3f;
+      border-radius: 40px;
+      height: 12px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      background: linear-gradient(90deg, #C46EA1, #9C2968);
+      width: 0%;
+      height: 100%;
+      border-radius: 40px;
+      box-shadow: 0 0 6px #ff99c5;
+    }
+    .lang-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.8rem;
+    }
+    .lang-table th, .lang-table td {
+      padding: 0.6rem 0.2rem;
+      border-bottom: 1px solid #5B1343;
+      text-align: left;
+    }
+    .lang-table th {
+      color: #C46EA1;
+      font-size: 1.1rem;
+    }
+
+    /* about timeline editable */
+    .timeline-editable {
+      background: rgba(0,5,13,0.5);
+      padding: 1rem 2rem;
+      border-radius: 48px;
+      margin-top: 1.8rem;
+      border-left: 6px solid #C46EA1;
+    }
+    .editable-area {
+      background: transparent;
+      border: 1px solid #9C2968;
+      border-radius: 28px;
+      padding: 1rem;
+      width: 100%;
+      color: #fff;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      resize: vertical;
+    }
+    .editable-area:focus {
+      outline: none;
+      border-color: #C46EA1;
+      box-shadow: 0 0 5px #C46EA1;
+    }
+    .project-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .project-card {
+      background: rgba(0,5,13,0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 42px;
+      padding: 1.5rem 1.8rem;
+      border: 1.8px solid #9C2968;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: 0.2s;
+    }
+    .project-card h3 {
+      font-size: 1.6rem;
+      color: #FFC1DC;
+      margin-bottom: 0.5rem;
+    }
+    .edit-btn {
+      background: #22587F;
+      border: none;
+      color: white;
+      padding: 8px 18px;
+      border-radius: 60px;
+      margin-top: 0.7rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.8rem;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .edit-btn:hover {
+      background: #9C2968;
+    }
+    .inline-edit {
+      width: 100%;
+      background: #0a101f;
+      color: white;
+      border: 1px solid #C46EA1;
+      border-radius: 28px;
+      padding: 12px;
+      font-size: 1rem;
+      margin: 8px 0;
+    }
+    p, li {
+      line-height: 1.45;
+    }
+    .quote-summary {
+      font-style: italic;
+      background: rgba(0,0,0,0.3);
+      padding: 1rem 1.6rem;
+      border-radius: 28px;
+      margin: 1rem 0;
+      border-left: 5px solid #9C2968;
+    }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+    @media (max-width: 780px) {
+      .app-container { padding: 1rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .curved-square { padding: 0.6rem 1rem; font-size: 1rem; }
+      .floating-heading { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <!-- header area (stays same for all "pages") -->
+  <div class="hero">
+    <h1>REARABETSWE SONS</h1>
+    <h3>Aspiring Cybersecurity Engineer specializing in Ethical Hacking and Offensive Security | Computer Science Student</h3>
+    <div class="neon-line"></div>
+    <div class="contact-links-row">
+      <a href="mailto:reasons95work@gmail.com"><i class="fas fa-envelope"></i> reasons95work@gmail.com</a>
+      <a href="https://www.linkedin.com/in/rearabetswe-sons-61a417264?utm_source=share_via&utm_content=profile&utm_medium=member_android" id="linkedin-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/MsNineteen" id="github-link"><i class="fab fa-github"></i> GitHub</a>
+      <a href="#" id="contact-link"><i class="fas fa-address-card"></i> Contacts</a>
+    </div>
+  </div>
+
+  <!-- curved navigation squares -->
+  <div class="nav-squares">
+    <div class="curved-square" data-page="home"><i class="fas fa-home"></i> Home</div>
+    <div class="curved-square" data-page="about"><i class="fas fa-user-circle"></i> About Me</div>
+    <div class="curved-square" data-page="skills"><i class="fas fa-code"></i> My Skills</div>
+    <div class="curved-square" data-page="projects"><i class="fas fa-project-diagram"></i> Projects</div>
+  </div>
+
+  <!-- ================= HOME PAGE ================= -->
+  <section id="home-page" class="page-section active-page">
+    <div class="floating-heading"><i class="fas fa-user-astronaut"></i> Introductory Summary</div>
+    <div class="quote-summary">
+      Computer Science student at Tshwane University of Technology with a strong foundation in Java programming, problem-solving, and software development. Passionate about cybersecurity and building secure systems, with a growing focus on penetration testing, vulnerability assessment, and protecting digital infrastructure.
+    </div>
+    <!-- additional flair -->
+    <div style="margin-top: 1.5rem; font-size: 1rem;"><i class="fas fa-shield-alt" style="color:#C46EA1"></i> “Secure the future, one line of code at a time.”</div>
+  </section>
+
+  <!-- ================= SKILLS PAGE ================= -->
+  <section id="skills-page" class="page-section">
+    <div style="display: flex; justify-content: flex-start;">
+      <div class="floating-heading"><i class="fas fa-laptop-code"></i> MY SKILLS</div>
+    </div>
+    <div class="quote-summary">
+      “Computer Science student at Tshwane University of Technology with a strong foundation in Java programming, software development, and Discrete Mathematics.<br><br>
+      Passionate about cybersecurity, secure system design, and identifying vulnerabilities to strengthen and protect digital infrastructure.<br><br>
+      Skilled in problem-solving, project leadership, technology outreach, and creating engaging content that showcases emerging technologies and student innovation.<br><br>
+      Driven by continuous learning and innovation, with the goal of building practical solutions and becoming a highly skilled Cybersecurity Engineer.”
+    </div>
+
+    <div class="skill-layout">
+      <!-- Left side: Programming languages -->
+      <div class="skill-card">
+        <h3><i class="fas fa-terminal"></i> Programming languages</h3>
+        <div class="skill-bar-item"><div class="skill-label"><span>JAVA</span><span>80%</span></div><div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>HTML</span><span>85%</span></div><div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>CSS</span><span>85%</span></div><div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>SQL</span><span>60%</span></div><div class="bar-bg"><div class="bar-fill" style="width:60%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>JAVASCRIPT</span><span>50% (beginner)</span></div><div class="bar-bg"><div class="bar-fill" style="width:50%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>PYTHON</span><span>40% (beginner)</span></div><div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div></div>
+        
+        
+      </div>
+
+      <!-- Right side: Technical Skills with bars -->
+      <div class="skill-card">
+        <h3><i class="fas fa-microchip"></i> Technical Skills</h3>
+        <div class="skill-bar-item"><div class="skill-label"><span>Secure System Design</span><span>75%</span></div><div class="bar-bg"><div class="bar-fill" style="width:75%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>Problem Solving</span><span>90%</span></div><div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>Software Development</span><span>50% (beginner)</span></div><div class="bar-bg"><div class="bar-fill" style="width:50%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>Object-Oriented Programming (OOP)</span><span>70%</span></div><div class="bar-bg"><div class="bar-fill" style="width:70%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>Project Leadership</span><span>90%</span></div><div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>Web Development</span><span>90%</span></div><div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-label"><span>AI</span><span>85%</span></div><div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ME PAGE (with editable timeline) ================= -->
+  <section id="about-page" class="page-section">
+    <div style="display: flex; justify-content: flex-end;">
+      <div class="floating-heading"><i class="fas fa-id-card"></i> ABOUT ME</div>
+    </div>
+    <p style="font-size: 1.1rem; margin: 1rem 0 1rem 0;">
+      Rearabetswe Sons is a curious and driven Computer Science student who thrives on solving complex problems and exploring how technology can be used to build secure and innovative solutions. With a strong passion for cybersecurity and a goal of becoming a Cybersecurity Engineer, he is dedicated to continuously learning, creating impactful projects, and protecting digital systems from evolving threats.
+    </p>
+
+    <!-- Editable timeline (Experience / Journey) -->
+    <div class="timeline-editable">
+      <h3 style="color:#C46EA1; margin-bottom: 12px;"><i class="fas fa-history"></i> My Journey & Experience (Editable)</h3>
+      <div id="timeline-content" contenteditable="true" class="editable-area" style="min-height: 140px;">
+        📌 2023 - Present: Computer Science @ Tshwane University of Technology<br>
+        📌 2024: Cybersecurity Intern (virtual) - TryHackMe top 5%<br>
+        📌 2025: Leading Tech Outreach & CTF team member<br>
+        📌 Ongoing: Building offensive security toolkit and participating in bug bounty programs.
+      </div>
+      <small style="opacity:0.7;">✏️ Click the text above to edit your timeline/experience directly.</small>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS PAGE (timeline-like, editable curved rectangles) ================= -->
+  <section id="projects-page" class="page-section">
+    <div class="floating-heading" style="margin-bottom: 1rem;"><i class="fas fa-rocket"></i> PROJECT TIMELINE</div>
+    <p style="margin-bottom: 1rem;">Each project in a curved neon rectangle — edit any field by clicking the edit button or directly modify via inline fields.</p>
+    <div id="projects-container" class="project-timeline">
+      <!-- preloaded default projects, each project card is editable and preserves neon style -->
+    </div>
+    <button id="add-project-btn" class="edit-btn" style="margin-top: 2rem; background:#133C5A;"><i class="fas fa-plus-circle"></i> Add New Project</button>
+  </section>
+
+  <footer>© 2026 Rearabetswe Sons — Offensive Security Portfolio</footer>
+</div>
+
+<script>
+  // ------------------ Page Navigation ------------------
+  const pages = {
+    home: document.getElementById('home-page'),
+    about: document.getElementById('about-page'),
+    skills: document.getElementById('skills-page'),
+    projects: document.getElementById('projects-page')
+  };
+  const navButtons = document.querySelectorAll('.curved-square');
+  function setActivePage(pageId) {
+    Object.keys(pages).forEach(key => {
+      pages[key].classList.remove('active-page');
+    });
+    if(pages[pageId]) pages[pageId].classList.add('active-page');
+  }
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const page = btn.getAttribute('data-page');
+      if(page === 'home') setActivePage('home');
+      else if(page === 'about') setActivePage('about');
+      else if(page === 'skills') setActivePage('skills');
+      else if(page === 'projects') setActivePage('projects');
+    });
+  });
+
+  // contact demo links (enable editing later, but keep funtional)
+  document.getElementById('linkedin-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    prompt("Enter your LinkedIn profile URL:", "https://linkedin.com/in/rearabetswesons");
+  });
+  document.getElementById('github-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    prompt("Enter GitHub URL:", "https://github.com/rearabetswesons");
+  });
+  document.getElementById('contact-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert("📞 Contact: +27 XX XXX XXXX | rearabetwe.sons@example.com");
+  });
+  // email default click
+  const mailLink = document.querySelector('a[href^="mailto"]');
+  if(mailLink) mailLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    let newEmail = prompt("Edit email address:", "rearabetwe.sons@example.com");
+    if(newEmail) mailLink.href = `mailto:${newEmail}`;
+  });
+
+  // ---------- PROJECTS SYSTEM: dynamic editable curved rectangles, timeline style ----------
+  let projectsData = [
+    { title: "🔐 Network Vulnerability Scanner", desc: "Python-based tool that scans open ports & identifies weak configurations. Built with Nmap integration and custom logging. (Timeline: Jan 2025)" },
+    { title: "💻 Secure Java Auth System", desc: "Implemented password hashing, JWT tokens, role based access control using Spring Boot. (Feb 2025)" },
+    { title: "🛡️ CTF Writeups Platform", desc: "A web dashboard to share Capture The Flag solutions, built with HTML/CSS/JS & local storage. (March 2025)" }
+  ];
+
+  const projectsContainer = document.getElementById('projects-container');
+
+  function renderProjects() {
+    projectsContainer.innerHTML = '';
+    projectsData.forEach((project, idx) => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.setAttribute('data-idx', idx);
+      // title editable span + edit icon
+      const titleSpan = document.createElement('div');
+      titleSpan.style.display = 'flex';
+      titleSpan.style.alignItems = 'center';
+      titleSpan.style.justifyContent = 'space-between';
+      titleSpan.style.flexWrap = 'wrap';
+      const titleHeading = document.createElement('h3');
+      titleHeading.innerHTML = project.title;
+      const editTitleBtn = document.createElement('button');
+      editTitleBtn.className = 'edit-btn';
+      editTitleBtn.innerHTML = '<i class="fas fa-pen"></i> Edit title';
+      editTitleBtn.style.padding = '4px 12px';
+      editTitleBtn.style.fontSize = '0.75rem';
+      editTitleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const newTitle = prompt('Edit project title:', project.title);
+        if(newTitle) { project.title = newTitle; renderProjects(); }
+      });
+      titleSpan.appendChild(titleHeading);
+      titleSpan.appendChild(editTitleBtn);
+      
+      const descPara = document.createElement('p');
+      descPara.style.margin = '12px 0';
+      descPara.innerHTML = project.desc;
+      const editDescBtn = document.createElement('button');
+      editDescBtn.className = 'edit-btn';
+      editDescBtn.innerHTML = '<i class="fas fa-edit"></i> Edit description';
+      editDescBtn.addEventListener('click', () => {
+        const newDesc = prompt('Edit project description:', project.desc);
+        if(newDesc) { project.desc = newDesc; renderProjects(); }
+      });
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'edit-btn';
+      removeBtn.style.background = '#5B1343';
+      removeBtn.innerHTML = '<i class="fas fa-trash-alt"></i> Remove';
+      removeBtn.addEventListener('click', () => {
+        projectsData.splice(idx,1);
+        renderProjects();
+      });
+      const actionDiv = document.createElement('div');
+      actionDiv.style.display = 'flex';
+      actionDiv.style.gap = '12px';
+      actionDiv.style.marginTop = '10px';
+      actionDiv.appendChild(editDescBtn);
+      actionDiv.appendChild(removeBtn);
+      
+      card.appendChild(titleSpan);
+      card.appendChild(descPara);
+      card.appendChild(actionDiv);
+      projectsContainer.appendChild(card);
+    });
+  }
+  
+  document.getElementById('add-project-btn').addEventListener('click', () => {
+    const newTitle = prompt('New project title:', 'New Cyber Project');
+    if(newTitle) {
+      const newDesc = prompt('Describe the project (timeline & details):', 'Add details here...');
+      projectsData.push({ title: newTitle, desc: newDesc || 'No description provided.' });
+      renderProjects();
+    } else {
+      alert("Please enter a title.");
+    }
+  });
+  
+  renderProjects();
+
+  // Additional consistent style for about timeline editable (already contenteditable)
+  // Also ensure that bar percentages and language table stay intact.
+  // make sure skills bar are visible
+  // preserve any other details.
+  // prefill icons maker
+  // small tweak for the neon line: hover effect
+  const neonLine = document.querySelector('.neon-line');
+  if(neonLine) {
+    neonLine.addEventListener('mouseenter', () => neonLine.style.width = '140px');
+    neonLine.addEventListener('mouseleave', () => neonLine.style.width = '80px');
+  }
+  
+  // optional: support for local storage on About Me timeline content
+  const timelineDiv = document.getElementById('timeline-content');
+  if(timelineDiv) {
+    const savedTimeline = localStorage.getItem('aboutTimeline');
+    if(savedTimeline) timelineDiv.innerText = savedTimeline;
+    timelineDiv.addEventListener('blur', function() {
+      localStorage.setItem('aboutTimeline', timelineDiv.innerText);
+    });
+  }
+  
+  // preserve projects to local storage?
+  function saveProjectsToLocal() {
+    localStorage.setItem('userProjects', JSON.stringify(projectsData));
+  }
+  function loadProjectsFromLocal() {
+    const stored = localStorage.getItem('userProjects');
+    if(stored) {
+      try {
+        projectsData = JSON.parse(stored);
+        renderProjects();
+      } catch(e) {}
+    }
+  }
+  // after any modification to projectsData, we save to localStorage
+  const originalRender = renderProjects;
+  window.renderProjects = function() {
+    originalRender();
+    saveProjectsToLocal();
+  };
+  renderProjects = function() {
+    originalRender();
+    saveProjectsToLocal();
+  }.bind(this);
+  // override prototype: capture changes
+  const addBtn = document.getElementById('add-project-btn');
+  const originalAdd = addBtn.onclick;
+  addBtn.onclick = () => {
+    const newTitle = prompt('New project title:', 'New Cyber Project');
+    if(newTitle) {
+      const newDesc = prompt('Description / Timeline:', 'e.g., penetration testing lab, April 2025');
+      projectsData.push({ title: newTitle, desc: newDesc || 'Upcoming project' });
+      renderProjects();
+      saveProjectsToLocal();
+    }
+  };
+  // rewire original render calls for dynamic
+  const renderRef = renderProjects;
+  window.projectsSync = () => { renderRef(); saveProjectsToLocal(); };
+  renderProjects();
+  loadProjectsFromLocal();
+  // final override: after loading local, ensure render uses local
+  if(localStorage.getItem('userProjects')) loadProjectsFromLocal();
+  
+  // make skill bars also dynamic? not needed but fine.
+  console.log("Portfolio ready — editable projects & timeline with neon theme.");
+</script>
+</body>
+</html>
