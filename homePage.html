@@ -255,6 +255,15 @@
       color: #FFC1DC;
       margin-bottom: 0.5rem;
     }
+     .save-btn {
+      background: #5B1343;
+      border: 1px solid #C46EA1;
+      box-shadow: 0 0 6px #9C2968;
+    }
+    .save-btn:hover {
+      background: #9C2968;
+      border-color: #FFB3D1;
+    }
     .edit-btn {
       background: #22587F;
       border: none;
@@ -394,10 +403,10 @@
     <div class="timeline-editable">
       <h3 style="color:#C46EA1; margin-bottom: 12px;"><i class="fas fa-history"></i> My Journey & Experience (Editable)</h3>
       <div id="timeline-content" contenteditable="true" class="editable-area" style="min-height: 140px;">
-        📌 2023 - Present: Computer Science @ Tshwane University of Technology<br>
-        📌 2024: Cybersecurity Intern (virtual) - TryHackMe top 5%<br>
-        📌 2025: Leading Tech Outreach & CTF team member<br>
-        📌 Ongoing: Building offensive security toolkit and participating in bug bounty programs.
+        📌 Dec 2025 - Present: Chairperson @ Hacker Society (Student Structure) <br>
+        📌 Oct 2024 - Nov 2025: Creative Director @ Hacker Society (Student Structure)  <br>
+        📌 Feb 2024 - Present: Computer Science Student - Tshwane University of Technology<br>
+        📌  Beginner: Building offensive security toolkit..
       </div>
       <small style="opacity:0.7;">✏️ Click the text above to edit your timeline/experience directly.</small>
     </div>
@@ -406,11 +415,13 @@
   <!-- ================= PROJECTS PAGE (timeline-like, editable curved rectangles) ================= -->
   <section id="projects-page" class="page-section">
     <div class="floating-heading" style="margin-bottom: 1rem;"><i class="fas fa-rocket"></i> PROJECT TIMELINE</div>
-    <p style="margin-bottom: 1rem;">Each project in a curved neon rectangle — edit any field by clicking the edit button or directly modify via inline fields.</p>
+    <p style="margin-bottom: 1rem;">The showcased projects were inspired by the themes provided in hackerthons I have attended in 2025.</p>
     <div id="projects-container" class="project-timeline">
       <!-- preloaded default projects, each project card is editable and preserves neon style -->
     </div>
     <button id="add-project-btn" class="edit-btn" style="margin-top: 2rem; background:#133C5A;"><i class="fas fa-plus-circle"></i> Add New Project</button>
+    <br>
+    <button id="global-save-btn" class="edit-btn save-btn"><i class="fas fa-save"></i> 💾 Save All Changes (Projects & Timeline)</button>
   </section>
 
   <footer>© 2026 Rearabetswe Sons — Offensive Security Portfolio</footer>
@@ -444,30 +455,58 @@
   // contact demo links (enable editing later, but keep funtional)
   document.getElementById('linkedin-link')?.addEventListener('click', (e) => {
     e.preventDefault();
-    prompt("Enter your LinkedIn profile URL:", "https://linkedin.com/in/rearabetswesons");
+    prompt("Enter your LinkedIn profile URL:", "https://www.linkedin.com/in/rearabetswe-sons-61a417264?utm_source=share_via&utm_content=profile&utm_medium=member_android");
   });
   document.getElementById('github-link')?.addEventListener('click', (e) => {
     e.preventDefault();
-    prompt("Enter GitHub URL:", "https://github.com/rearabetswesons");
+    prompt("Enter GitHub URL:", "https://github.com/MsNineteen");
   });
   document.getElementById('contact-link')?.addEventListener('click', (e) => {
     e.preventDefault();
-    alert("📞 Contact: +27 XX XXX XXXX | rearabetwe.sons@example.com");
+    alert("📞 Contact: +27 68 059 2917 | reasons95work@gmail.com");
   });
   // email default click
   const mailLink = document.querySelector('a[href^="mailto"]');
   if(mailLink) mailLink.addEventListener('click', (e) => {
     e.preventDefault();
-    let newEmail = prompt("Edit email address:", "rearabetwe.sons@example.com");
+    let newEmail = prompt("Edit email address:", "reasons95work@gmail.com");
     if(newEmail) mailLink.href = `mailto:${newEmail}`;
   });
 
-  // ---------- PROJECTS SYSTEM: dynamic editable curved rectangles, timeline style ----------
+
+  // ---------- PROJECTS SYSTEM ----------
   let projectsData = [
-    { title: "🔐 Network Vulnerability Scanner", desc: "Python-based tool that scans open ports & identifies weak configurations. Built with Nmap integration and custom logging. (Timeline: Jan 2025)" },
-    { title: "💻 Secure Java Auth System", desc: "Implemented password hashing, JWT tokens, role based access control using Spring Boot. (Feb 2025)" },
-    { title: "🛡️ CTF Writeups Platform", desc: "A web dashboard to share Capture The Flag solutions, built with HTML/CSS/JS & local storage. (March 2025)" }
+    { title: "🩺 LlamaCare-App - December 2025", desc: "A healthcare application designed to educate patients about surgical procedures in a clear and understandable way, helping them make informed decisions before signing consent forms. The app also includes anxiety-reducing features to support patients emotionally and decrease last-minute surgery and appointment cancellations." },
+    { title: "📚⏰ Exam_Nexus_Tracker - May 2026", desc: "This website helps students create a personalized study plan based on how many days remain before their exams and whether they prefer studying in the morning or at night. It also provides AI-generated study tips to help manage workload effectively. Students can enter their cellphone number to receive daily SMS reminders about which module they should focus on each day" },
+    { title: "🧠 UbuntuAI - October 2025", desc: "An ethical AI-powered platform that provides bias-free, multilingual career guidance and skill-based job matching to help African youth access fair employment opportunities." }
   ];
+
+
+  
+  function showToastMessage(msg) {
+    const toast = document.getElementById('toastMsg');
+    toast.textContent = msg || "✅ All changes saved!";
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2000);
+  }
+
+  function saveProjectsToLocal() {
+    localStorage.setItem(STORAGE_PROJECTS, JSON.stringify(projectsData));
+  }
+  
+  function loadProjectsFromLocal() {
+    const stored = localStorage.getItem(STORAGE_PROJECTS);
+    if(stored) {
+      try {
+        projectsData = JSON.parse(stored);
+        renderProjects(); 
+      } catch(e) { console.warn(e); }
+    } else {
+      renderProjects();
+    }
+  }
 
   const projectsContainer = document.getElementById('projects-container');
 
