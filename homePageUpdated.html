@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Rearabetswe Sons | Cybersecurity Portfolio</title>
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #C46EA1 0%, #9C2968 30%, #5B1343 55%, #00050D 85%);
+      min-height: 100vh;
+      color: #f0f0f0;
+      scroll-behavior: smooth;
+    }
+
+    /* main container */
+    .app-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 4rem;
+    }
+
+    /* --- header / hero --- */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #5B1343;
+      color: white;
+      font-weight: 700;
+    }
+    .hero h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 0.75rem 0 1rem;
+      color: #FFE7F0;
+      opacity: 0.95;
+    }
+    .neon-line {
+      width: 80px;
+      height: 4px;
+      background: #9C2968;
+      margin: 1rem auto;
+      border-radius: 4px;
+      box-shadow: 0 0 12px #C46EA1, 0 0 6px #ff96c0;
+      transition: width 0.3s;
+    }
+    .neon-line:hover {
+      width: 140px;
+    }
+    .contact-links-row {
+      display: flex;
+      justify-content: center;
+      gap: 2.2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+    .contact-links-row a {
+      color: #FFD9EC;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      border-bottom: 1px dotted transparent;
+      cursor: pointer;
+    }
+    .contact-links-row a i {
+      margin-right: 6px;
+      color: #FFB3D1;
+    }
+    .contact-links-row a:hover {
+      color: white;
+      text-shadow: 0 0 3px #C46EA1;
+      border-bottom-color: #C46EA1;
+    }
+
+    /* navigation curved squares (floating buttons) */
+    .nav-squares {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 3rem 0 3rem;
+    }
+    .curved-square {
+      background: rgba(0, 5, 13, 0.65);
+      backdrop-filter: blur(4px);
+      border: 1.8px solid #9C2968;
+      border-radius: 32px;
+      padding: 1rem 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #f0f0f0;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 6px rgba(156,41,104,0.5);
+      background: #0a0f1cee;
+    }
+    .curved-square i {
+      font-size: 1.5rem;
+      color: #C46EA1;
+    }
+    .curved-square:hover {
+      transform: translateY(-5px);
+      border-color: #C46EA1;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.5), 0 0 12px #ff7eb3;
+      background: #18203ccc;
+    }
+
+    /* page content sections (each "page" is a section) */
+    .page-section {
+      display: none;
+      animation: fadeSlide 0.35s ease;
+      margin-top: 1.2rem;
+    }
+    .active-page {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(12px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* floating heading style (neon background shade) */
+    .floating-heading {
+      display: inline-block;
+      background: linear-gradient(120deg, #133C5A, #22587F);
+      padding: 0.35rem 2rem;
+      border-radius: 60px;
+      font-size: 2rem;
+      font-weight: bold;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.3), 0 0 8px #9C2968;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      border: 1px solid rgba(196,110,161,0.5);
+      align-items: center;
+      text-align: center;
+    }
+    .skill-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.8rem;
+    }
+    .skill-card {
+      flex: 1;
+      min-width: 260px;
+      background: rgba(0,5,13,0.55);
+      backdrop-filter: blur(4px);
+      border-radius: 36px;
+      padding: 1.5rem 1.5rem;
+      border: 1px solid #5B1343;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    .skill-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      background: #18203C;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+    }
+    .skill-list {
+      list-style: none;
+      line-height: 1.8;
+    }
+
+    .timeline-section {
+      background: rgba(0,5,13,0.5);
+      padding: 1rem 2rem;
+      border-radius: 48px;
+      margin-top: 1.8rem;
+      border-left: 6px solid #C46EA1;
+    }
+    .timeline-content p {
+      margin: 0.5rem 0;
+    }
+    .project-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .project-card {
+      background: rgba(0,5,13,0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 42px;
+      padding: 1.5rem 1.8rem;
+      border: 1.8px solid #9C2968;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: 0.2s;
+    }
+    .project-card h3 {
+      font-size: 1.6rem;
+      color: #FFC1DC;
+      margin-bottom: 0.5rem;
+    }
+    .project-intro {
+      margin-bottom: 1rem;
+    }
+    p, li {
+      line-height: 1.45;
+    }
+    .quote-summary {
+      font-style: italic;
+      background: rgba(0,0,0,0.3);
+      padding: 1rem 1.6rem;
+      border-radius: 28px;
+      margin: 1rem 0;
+      border-left: 5px solid #9C2968;
+    }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+    @media (max-width: 780px) {
+      .app-container { padding: 1rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .curved-square { padding: 0.6rem 1rem; font-size: 1rem; }
+      .floating-heading { font-size: 1.5rem; }
+      .contact-links-row { gap: 1rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <!-- header area (stays same for all "pages") -->
+  <div class="hero">
+    <h1>REARABETSWE SONS</h1>
+    <h3>Aspiring Cybersecurity Engineer specializing in Ethical Hacking and Offensive Security | Computer Science Student</h3>
+    <div class="neon-line"></div>
+    <div class="contact-links-row">
+      <a href="mailto:reasons95work@gmail.com"><i class="fas fa-envelope"></i> reasons95work@gmail.com</a>
+      <a href="https://www.linkedin.com/in/rearabetswe-sons-61a417264?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/MsNineteen" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+      <a href="tel:+27680592917"><i class="fas fa-phone"></i> +27 68 059 2917</a>
+    </div>
+  </div>
+
+  <!-- curved navigation squares -->
+  <div class="nav-squares">
+    <div class="curved-square" data-page="home"><i class="fas fa-home"></i> Home</div>
+    <div class="curved-square" data-page="about"><i class="fas fa-user-circle"></i> About Me</div>
+    <div class="curved-square" data-page="skills"><i class="fas fa-code"></i> My Skills</div>
+    <div class="curved-square" data-page="projects"><i class="fas fa-project-diagram"></i> Projects</div>
+  </div>
+
+  <!-- ================= HOME PAGE ================= -->
+  <section id="home-page" class="page-section active-page">
+    <div class="floating-heading"><i class="fas fa-user-astronaut"></i> Introductory Summary</div>
+    <div class="quote-summary">
+      Computer Science student at Tshwane University of Technology with a strong foundation in Java programming, problem-solving, and software development. Passionate about cybersecurity and building secure systems, with a growing focus on penetration testing, vulnerability assessment, and protecting digital infrastructure.
+    </div>
+    <!-- additional flair -->
+    <div style="margin-top: 1.5rem; font-size: 1rem;"><i class="fas fa-shield-alt" style="color:#C46EA1"></i> “Secure the future, one line of code at a time.”</div>
+  </section>
+
+  <!-- ================= SKILLS PAGE ================= -->
+  <section id="skills-page" class="page-section">
+    <div style="display: flex; justify-content: flex-start;">
+      <div class="floating-heading"><i class="fas fa-laptop-code"></i> MY SKILLS</div>
+    </div>
+    <div class="quote-summary">
+      “Computer Science student at Tshwane University of Technology with a strong foundation in Java programming, software development, and Discrete Mathematics.<br><br>
+      Passionate about cybersecurity, secure system design, and identifying vulnerabilities to strengthen and protect digital infrastructure.<br><br>
+      Skilled in problem-solving, project leadership, technology outreach, and creating engaging content that showcases emerging technologies and student innovation.<br><br>
+      Driven by continuous learning and innovation, with the goal of building practical solutions and becoming a highly skilled Cybersecurity Engineer.”
+    </div>
+
+    <div class="skill-layout">
+      <div class="skill-card">
+        <h3><i class="fas fa-terminal"></i> Languages & Web</h3>
+        <ul class="skill-list">
+          <li>Java, Python, JavaScript</li>
+          <li>HTML, CSS</li>
+          <li>SQL</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3><i class="fas fa-shield-alt"></i> Security & Development</h3>
+        <ul class="skill-list">
+          <li>Secure system design</li>
+          <li>Vulnerability assessment and network scanning</li>
+          <li>Object-oriented programming</li>
+          <li>CTF practice</li>
+          <li>Software and web development</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3><i class="fas fa-lightbulb"></i> Professional Skills</h3>
+        <ul class="skill-list">
+          <li>Problem solving</li>
+          <li>Project leadership</li>
+          <li>Technology outreach</li>
+          <li>Content creation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ME PAGE ================= -->
+  <section id="about-page" class="page-section">
+    <div style="display: flex; justify-content: flex-end;">
+      <div class="floating-heading"><i class="fas fa-id-card"></i> ABOUT ME</div>
+    </div>
+    <p style="font-size: 1.1rem; margin: 1rem 0 1rem 0;">
+      Rearabetswe Sons is a curious and driven Computer Science student who thrives on solving complex problems and exploring how technology can be used to build secure and innovative solutions. With a strong passion for cybersecurity and a goal of becoming a Cybersecurity Engineer, he is dedicated to continuously learning, creating impactful projects, and protecting digital systems from evolving threats.
+    </p>
+
+    <div class="timeline-section">
+      <h3 style="color:#C46EA1; margin-bottom: 12px;"><i class="fas fa-history"></i> Journey & Experience</h3>
+      <div class="timeline-content">
+        <p>📌 Dec 2025 - Present: Chairperson, Hacker Society (Student Structure)</p>
+        <p>📌 Oct 2024 - Nov 2025: Creative Director, Hacker Society (Student Structure)</p>
+        <p>📌 Feb 2024 - Present: Computer Science Student, Tshwane University of Technology</p>
+        <p>📌 Developing an offensive security toolkit</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS PAGE ================= -->
+  <section id="projects-page" class="page-section">
+    <div class="floating-heading" style="margin-bottom: 1rem;"><i class="fas fa-rocket"></i> PROJECT TIMELINE</div>
+    <p class="project-intro">Selected projects across healthcare, education, and ethical AI.</p>
+    <div class="project-timeline">
+      <article class="project-card">
+        <h3>🩺 LlamaCare-App - December 2025</h3>
+        <p>A healthcare application that explains surgical procedures in clear, accessible language to help patients make informed decisions. It also includes anxiety-reducing features to support patients and reduce last-minute cancellations.</p>
+      </article>
+      <article class="project-card">
+        <h3>📚⏰ Exam_Nexus_Tracker - May 2026</h3>
+        <p>A study-planning website that builds personalized schedules based on exam dates and preferred study times, offers AI-generated study tips, and sends daily SMS reminders about what to study.</p>
+      </article>
+      <article class="project-card">
+        <h3>🧠 UbuntuAI - October 2025</h3>
+        <p>An ethical AI-powered platform offering multilingual career guidance and skill-based job matching to help African youth access fair employment opportunities.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer>© 2026 Rearabetswe Sons — Offensive Security Portfolio</footer>
+</div>
+
+<script>
+  const pages = {
+    home: document.getElementById('home-page'),
+    about: document.getElementById('about-page'),
+    skills: document.getElementById('skills-page'),
+    projects: document.getElementById('projects-page')
+  };
+
+  document.querySelectorAll('.nav-squares [data-page]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const activePage = button.dataset.page;
+      Object.entries(pages).forEach(([page, section]) => {
+        section.classList.toggle('active-page', page === activePage);
+      });
+    });
+  });
+</script>
+</body>
+</html>
